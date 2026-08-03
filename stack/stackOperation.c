@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #define max 10
 // Global variables
-int front = -1, rear = -1, cnt = 0, queue[max];
+int top = -1, cnt = 0, stack[max];
 // Function declaration
-void enqueue(int);
-void dequeue();
+void push(int);
+void pop();
 void display();
 void peep();
 int count();
@@ -13,7 +13,7 @@ int count();
 int main()
 {
   int val, ch;
-  printf("\n---Queue Operation---\n1. ENQUEUE\n2. DEQUEUE\n3. DISPLAY\n4. PEEP\n5. COUNT\n6. EXIT\n------------------\n");
+  printf("\n---Stack Operations---\n1. PUSH\n2. POP\n3. DISPLAY\n4. PEEP\n5. COUNT\n6. EXIT\n------------------\n");
   while (1)
   {
     printf("Enter your choice ");
@@ -21,12 +21,12 @@ int main()
     switch (ch)
     {
     case 1:
-      printf("Enter the value to enqueue ");
+      printf("Enter the value to push in the stack ");
       scanf("%d", &val);
-      enqueue(val);
+      push(val);
       break;
     case 2:
-      dequeue();
+      pop();
       break;
     case 3:
       display();
@@ -35,7 +35,7 @@ int main()
       peep();
       break;
     case 5:
-      printf("The number of elements in the queue is %d.\n", count());
+      printf("The number of elements in the stack is %d.\n", count());
       break;
     case 6:
       printf("Operation is terminated.");
@@ -49,71 +49,65 @@ int main()
 }
 
 // Function definition
-void enqueue(int val)
+void push(int val)
 {
-  if (rear == max - 1)
+  if (top == max - 1)
   {
-    printf("Queue is full!\n");
+    printf("Stack is full!\n");
   }
   else
   {
-    if (front == -1)
-    {
-      front = 0;
-    }
-    rear++;
-    queue[rear] = val;
-    printf("%d added successfully in the queue!\n", val);
+    top++;
+    stack[top] = val;
+    printf("%d added successfully in the stack!\n", val);
     cnt++;
   }
 }
-void dequeue()
+void pop()
 {
-  if (front == -1 || front > rear)
+  if (top == -1)
   {
     printf("Queue is empty,nothing to be dequeue.\n");
   }
   else
   {
-    printf("%d deleted successfully.\n", queue[front]);
-    front++;
+
+    printf("%d deleted successfully.\n", stack[top]);
+    top--;
     cnt--;
-    if (front > rear)
+    if (cnt == 0)
     {
-      front = -1;
-      rear = -1;
+      top = -1;
     }
   }
-  
 }
 void display()
 {
-  if (front == -1)
+  if (top == -1)
   {
     printf("The queue is empty.\n");
   }
   else
   {
+
     printf("The Queue is \n");
-    for (int i = front; i <= rear; i++)
+    for (int i = top; i >= 0; i--)
     {
-      printf("%d\n", queue[i]);
+      printf("%d\n", stack[i]);
     }
   }
-  
-  
 }
 void peep()
 {
-  if (front == -1)
+  if (top == -1)
   {
     printf("The queue is empty.\n");
   }
   else
   {
-    printf("The first element is %d.\n", queue[front]);
+
+    printf("The last element is %d.\n", stack[top]);
   }
-  
 }
 int count()
 {
