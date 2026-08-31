@@ -35,7 +35,7 @@ int main()
   printf("The list is\n");
   display(head);
 
-  printf("---Linked List Operation---\n1) Insert at the first node.\n2) Insert at the given index.\n3) Insert at the end.\n4) Insert after a given node.\n5) Insert before a given node.\n6) Exit\n");
+  printf("---Linked List Insertion Operation---\n1) Insert at the first node.\n2) Insert at the given index.\n3) Insert at the end.\n4) Insert after a given node.\n5) Insert before a given node.\n6) Exit\n");
 
   while (1)
   {
